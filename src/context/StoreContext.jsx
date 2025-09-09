@@ -1,6 +1,5 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext,  useState } from "react";
 import { food_list } from "../assets/assets";
-import { Prev } from "react-bootstrap/esm/PageItem";
 
 
 export const StoreContext = createContext(null)
@@ -21,17 +20,27 @@ const StoreContextProvider = (props) =>{
         setCaerdItems((Prev) => ({...Prev,[itemId]:Prev[itemId]-1}))
     }
 
-    useEffect (() =>{
-        console.log(cardItems);
+    const getTotalCartAmount = ()=>{
+        let totalAmount = 0;
+        for(const item in cardItems){
 
-    },[cardItems])
+            if(cardItems[item]>0)
+            {
+            let iteminfo = food_list.find((product) => product._id === item);
+            totalAmount += iteminfo.price * cardItems[item]
+            }
+        }
+        return totalAmount;
+      }
 
     const contextValue ={
         food_list,
         cardItems,
         setCaerdItems,
         addToCard,
-        removeFromCard
+        removeFromCard,
+        getTotalCartAmount
+
 
     }
    return (
