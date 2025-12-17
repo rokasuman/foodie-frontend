@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import "./foodItem.css"
 import { assets } from '../../assets/assets'
-import { Prev } from 'react-bootstrap/esm/PageItem'
 import { StoreContext } from '../../context/StoreContext'
 
 
